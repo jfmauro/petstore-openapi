@@ -2,7 +2,9 @@ package be.petstoreapifirst.pet.api;
 
 import be.example.petstoreopenapi.rest.api.PetApi;
 import be.example.petstoreopenapi.rest.model.PetDto;
+import be.petstoreapifirst.pet.service.PetService;
 import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,12 +15,14 @@ import javax.validation.Valid;
 
 @CrossOrigin
 @RestController
+@RequiredArgsConstructor
 public class PetRestController implements PetApi {
 
-    @Override
-    public ResponseEntity<Void> addPet(@ApiParam(value = "Pet object that needs to be added to the store" ,required=true )
-                                           @Valid @RequestBody PetDto petDto) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    private final PetService petService;
 
+    @Override
+    public ResponseEntity<PetDto> addPet(PetDto petDto) {
+        petService.newPet(petDto);
+        return new ResponseEntity<>(petDto, HttpStatus.CREATED);
     }
 }
