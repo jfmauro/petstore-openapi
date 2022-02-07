@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,12 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Pet extends AbstractEntity {
+public class Pet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Long id;
 
     @NotNull(message = "mandatory")
     @Column(name="NAME")
@@ -37,4 +43,10 @@ public class Pet extends AbstractEntity {
     @Column(name = "STATUS")
     private PetStatus status;
 
+    @Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime creationDate;
+
+    @Version
+    @Column(nullable = false, name = "VERSION")
+    private Integer version;
 }

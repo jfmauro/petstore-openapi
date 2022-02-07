@@ -5,17 +5,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Tag extends AbstractEntity {
+public class Tag {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Long id;
 
     @NotNull(message = "mandatory")
     @Column(name="NAME")
@@ -24,4 +27,11 @@ public class Tag extends AbstractEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "PET_ID")
     private Pet pet;
+
+    @Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime creationDate;
+
+    @Version
+    @Column(nullable = false, name = "VERSION")
+    private Integer version;
 }
