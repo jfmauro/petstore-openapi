@@ -24,6 +24,10 @@ public class PetService {
         return pet;
     }
 
+    public Optional<Pet> findById(Long id) {
+        return petRepository.findById(id);
+    }
+
     private Category findCategoryById(Long id) {
         return categoryRepository.findById(id)
                 .orElseThrow(() -> new CategoryNotFoundException("Category ID : " + id + " not exists"));

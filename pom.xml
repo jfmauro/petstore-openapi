@@ -78,7 +78,7 @@
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <!-- RELEASE_VERSION -->
-                <version>5.2.0</version>
+                <version>5.3.0</version>
                 <!-- /RELEASE_VERSION -->
                 <executions>
                     <execution>
@@ -104,6 +104,27 @@
                             </configOptions>
                         </configuration>
                     </execution>
+
+                    <execution>
+                        <id>rest-angular-frontend</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/petshop-api-1.0.0.yaml</inputSpec>
+                            <generatorName>typescript-angular</generatorName>
+                            <output>target/generated-sources/openapi/petstore-core-api</output>
+                            <configOptions>
+                                <npmName>@jfmauro/petstore-core-api</npmName>
+                                <!--<npmRepository>http://artifact.finbel.intra:8081/artifactory/api/npm/npm-repo/</npmRepository>-->
+                                <providedInRoot>true</providedInRoot>
+                                <apiModulePrefix>tms</apiModulePrefix>
+                                <stringEnums>true</stringEnums>
+                                <snapshot>true</snapshot>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+
                 </executions>
             </plugin>
             <plugin>
