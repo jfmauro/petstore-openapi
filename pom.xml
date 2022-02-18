@@ -121,6 +121,7 @@
                                 <apiModulePrefix>tms</apiModulePrefix>
                                 <stringEnums>true</stringEnums>
                                 <snapshot>true</snapshot>
+                                <!--<ngVersion>13.2.3</ngVersion>-->
                             </configOptions>
                         </configuration>
                     </execution>
