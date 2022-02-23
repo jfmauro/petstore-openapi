@@ -116,7 +116,7 @@
                             <output>target/generated-sources/openapi/petstore-core-api</output>
                             <configOptions>
                                 <npmName>@jfmauro/petstore-core-api</npmName>
-                                <!--<npmRepository>http://artifact.finbel.intra:8081/artifactory/api/npm/npm-repo/</npmRepository>-->
+                                <!--<npmRepository>npmjs</npmRepository>-->
                                 <providedInRoot>true</providedInRoot>
                                 <apiModulePrefix>tms</apiModulePrefix>
                                 <stringEnums>true</stringEnums>
